@@ -1,4 +1,4 @@
-# FiltersReporting v1.0.0 --- User Manual
+﻿# FiltersReporting v1.0.0 --- User Manual
 
 ## 1. Purpose
 
@@ -19,19 +19,19 @@ security policy, security mode and authentication settings.
 
 The application contains four main views:
 
--   **Przegląd** --- monitoring dashboard and collector controls
+-   **PrzeglÄ…d** --- monitoring dashboard and collector controls
 -   **Filtry** --- filter/machine configuration and NodeIds
 -   **Raporty** --- daily report preview, generation and files
 -   **Ustawienia** --- database, reports, SMTP, OPC UA Client and OPC UA
     Server configuration
 
-![Dashboard](screenshots/Dashboard.png)
+![Dashboard](screenshots/dashboard.png)
 
 ## 3. First configuration
 
 A practical first-start sequence is:
 
-1.  Open **Ustawienia → Ogólne**.
+1.  Open **Ustawienia â†’ OgĂłlne**.
 2.  Verify the SQLite database path.
 3.  Select the report output directory.
 4.  Configure automatic reporting if required.
@@ -39,17 +39,17 @@ A practical first-start sequence is:
 6.  Create/configure filters in **Filtry**.
 7.  Configure the OPC UA Client separately for every filter.
 8.  Test connectivity.
-9.  Return to **Przegląd** and start data collection.
+9.  Return to **PrzeglÄ…d** and start data collection.
 
-## 4. Dashboard --- `Przegląd`
+## 4. Dashboard --- `PrzeglÄ…d`
 
-![Dashboard](screenshots/Dashboard.png)
+![Dashboard](screenshots/dashboard.png)
 
 The upper cards summarize collector state, database state, active-filter
 count and filters currently requiring attention. The collector card also
 shows OPC UA connectivity.
 
-Set **Interwał** and use the collector action button. When collection is
+Set **InterwaĹ‚** and use the collector action button. When collection is
 running, the button changes to **Zatrzymaj**.
 
 The collector operates as a separate process. In the installed version
@@ -68,15 +68,15 @@ checks.
 
 ## 5. Filters --- `Filtry`
 
-![Filters](screenshots/Filtry.png)
+![Filters](screenshots/filter-configuration.png)
 
 Use **+ Nowy filtr** to create a filter and configure:
 
 -   **Nazwa filtra**
 -   **Aktywny**
--   **Próg Δp \[Pa\]**
+-   **PrĂłg Î”p \[Pa\]**
 -   **Endpoint**
--   **Node Δp**
+-   **Node Î”p**
 -   **Node status**
 -   **Node alarm**
 
@@ -90,13 +90,13 @@ Status
 AlarmActive
 ```
 
-The exact NodeIds are machine-specific. Use **Przeglądaj OPC UA** to
+The exact NodeIds are machine-specific. Use **PrzeglÄ…daj OPC UA** to
 browse the server address space and select NodeIds instead of entering
 them manually.
 
-## 6. Settings --- `Ustawienia → Ogólne`
+## 6. Settings --- `Ustawienia â†’ OgĂłlne`
 
-![General settings](screenshots/Ustawienia.png)
+![General settings](screenshots/general-settings.png)
 
 ### SQLite database
 
@@ -118,13 +118,13 @@ empty database at that location after restart.
 
 ### Reports and automatic reporting
 
-Select the report output directory. Enable **Włącz raport automatyczny**
+Select the report output directory. Enable **WĹ‚Ä…cz raport automatyczny**
 and select the execution time when scheduling is required.
 
 The automatic report concerns the **previous day** and is executed at
 most once per day.
 
-Enable **Wyślij raport e-mailem** if the generated report should also be
+Enable **WyĹ›lij raport e-mailem** if the generated report should also be
 sent through SMTP.
 
 ### SMTP
@@ -139,9 +139,9 @@ variable, it takes precedence over the persisted credential.
 
 ## 7. OPC UA Client --- per machine
 
-Open **Ustawienia → OPC UA Client**.
+Open **Ustawienia â†’ OPC UA Client**.
 
-![OPC UA Client](screenshots/Ustawienia_OPC_Client_1.jpg)
+![OPC UA Client](screenshots/opc-ua-client-settings.jpg)
 
 Select the machine/filter at the top. The configuration below applies
 only to that machine.
@@ -169,7 +169,7 @@ SignAndEncrypt
 
 ### Certificates
 
-![OPC UA Client certificates](screenshots/Ustawienia_OPC_Client_2.jpg)
+![OPC UA Client certificates](screenshots/opc-ua-client-certificates.jpg)
 
 Each machine can use its own client certificate, private key,
 trusted-certificate directory and expected server certificate.
@@ -188,10 +188,10 @@ Per-machine stored passwords are protected with Windows DPAPI.
 
 ## 8. Reports --- `Raporty`
 
-![Reports](screenshots/Raporty.png)
+![Reports](screenshots/daily-reports.png)
 
 Select a date to inspect available data. The preview includes sample
-count, minimum Δp, average Δp, maximum Δp, configured Δp threshold,
+count, minimum Î”p, average Î”p, maximum Î”p, configured Î”p threshold,
 alarm percentage and operating percentage.
 
 Use **Generuj** to create:
@@ -203,15 +203,15 @@ Use **Generuj** to create:
 
 The Excel report contains summary and sample-level data.
 
-Use **Generuj i wyślij** to generate the report and send it using the
+Use **Generuj i wyĹ›lij** to generate the report and send it using the
 configured SMTP settings. The lower table lists generated files and
 allows a selected report to be opened.
 
 ## 9. Optional local OPC UA Server
 
-Open **Ustawienia → OPC UA Server**.
+Open **Ustawienia â†’ OPC UA Server**.
 
-![OPC UA Server](screenshots/Ustawienia_OPC_Server_1.png)
+![OPC UA Server](screenshots/opc-ua-server-settings.png)
 
 The local server exposes selected FiltersReporting monitoring data as
 read-only OPC UA variables.
@@ -230,7 +230,7 @@ Configurable properties include:
 
 Server configuration changes are applied after application restart.
 
-![OPC UA Server certificate](screenshots/Ustawienia_OPC_Server_2.jpg)
+![OPC UA Server certificate](screenshots/opc-ua-server-certificate.jpg)
 
 The v1.0 runtime OPC UA Server advertises:
 
@@ -247,7 +247,7 @@ not be treated as an active v1.0 runtime capability.
 Use:
 
 ``` text
-Przegląd → Logi
+PrzeglÄ…d â†’ Logi
 ```
 
 to open the collector log.
@@ -255,7 +255,7 @@ to open the collector log.
 A typical successful collection entry is:
 
 ``` text
-Cykl 1: zapisano 5/5 próbek. | OPC_OK
+Cykl 1: zapisano 5/5 prĂłbek. | OPC_OK
 ```
 
 The frozen GUI and collector explicitly share the same resolved log-file
@@ -311,3 +311,4 @@ FiltersReporting is proprietary software. The public repository is
 provided for portfolio and source-review purposes only.
 
 See the repository `LICENSE` file for the applicable terms.
+

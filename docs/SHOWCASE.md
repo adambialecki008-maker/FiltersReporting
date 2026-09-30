@@ -1,4 +1,4 @@
-# FiltersReporting v1.0.0 --- Showcase
+﻿# FiltersReporting v1.0.0 --- Showcase
 
 This document presents the main user-facing and technical areas of
 FiltersReporting. The screenshots use simulated OPC UA machines and
@@ -6,7 +6,7 @@ anonymised local paths/identifiers.
 
 ## 1. Monitoring dashboard
 
-![Dashboard](screenshots/Dashboard.png)
+![Dashboard](screenshots/dashboard.png)
 
 The dashboard is the operational view of the application. It combines
 collector state and collection interval, OPC UA connectivity, database
@@ -18,7 +18,7 @@ machines and two filters currently requiring attention.
 
 ## 2. Independent filter configuration
 
-![Filters](screenshots/Filtry.png)
+![Filters](screenshots/filter-configuration.png)
 
 The v1.0 data model is intentionally machine-oriented:
 
@@ -27,24 +27,24 @@ one filter = one independent OPC UA endpoint
 ```
 
 For every filter the user can configure the filter name and active
-state, Δp threshold, OPC UA endpoint and the `DeltaP`, `Status` and
+state, Î”p threshold, OPC UA endpoint and the `DeltaP`, `Status` and
 `AlarmActive` NodeIds. NodeIds can be entered manually or selected
 through the OPC UA namespace browser.
 
 ## 3. Daily reporting
 
-![Reports](screenshots/Raporty.png)
+![Reports](screenshots/daily-reports.png)
 
 The Reports view previews data for the selected day before report
 generation. The summary includes sample count, minimum/average/maximum
-Δp, configured threshold, alarm percentage and operating percentage.
+Î”p, configured threshold, alarm percentage and operating percentage.
 
 FiltersReporting generates both Excel and TXT output and can send the
 report through configured SMTP delivery.
 
 ## 4. General settings and automation
 
-![General settings](screenshots/Ustawienia.png)
+![General settings](screenshots/general-settings.png)
 
 General settings cover the SQLite database location, report output
 directory, automatic daily-report scheduling and SMTP configuration.
@@ -56,7 +56,7 @@ text in `settings.json`.
 
 ## 5. Per-machine OPC UA Client
 
-![OPC UA Client configuration](screenshots/Ustawienia_OPC_Client_1.jpg)
+![OPC UA Client configuration](screenshots/opc-ua-client-settings.jpg)
 
 Every filter has an independent OPC UA Client configuration. Machines
 can therefore differ in endpoint, security requirements, certificates
@@ -75,14 +75,14 @@ The client configuration supports:
 -   connection/request timeouts
 -   reconnect delay
 
-![OPC UA Client certificates](screenshots/Ustawienia_OPC_Client_2.jpg)
+![OPC UA Client certificates](screenshots/opc-ua-client-certificates.jpg)
 
 Client certificates can be generated per machine. Stored per-machine
 credentials are protected through Windows DPAPI.
 
 ## 6. Optional local OPC UA Server
 
-![OPC UA Server SecureChannel](screenshots/Ustawienia_OPC_Server_1.png)
+![OPC UA Server SecureChannel](screenshots/opc-ua-server-settings.png)
 
 FiltersReporting also contains an optional local OPC UA Server for
 exposing selected monitoring information as read-only variables.
@@ -92,7 +92,7 @@ Security Policy, Security Mode, server certificate, private key and an
 optional additional NoSecurity endpoint.
 
 ![OPC UA Server certificate and
-authentication](screenshots/Ustawienia_OPC_Server_2.jpg)
+authentication](screenshots/opc-ua-server-certificate.jpg)
 
 The v1.0 runtime server advertises `AnonymousIdentityToken`.
 Username/Password fields exist in the configuration UI, but server-side
@@ -105,12 +105,12 @@ The GUI and collector are separate processes.
 
 ``` text
 FiltersReporting.exe
-        │
-        └──> FiltersReportingCollector.exe
-                     │
-                     ├──> independent OPC UA clients
-                     ├──> SQLite
-                     └──> rotating collector.log
+        â”‚
+        â””â”€â”€> FiltersReportingCollector.exe
+                     â”‚
+                     â”śâ”€â”€> independent OPC UA clients
+                     â”śâ”€â”€> SQLite
+                     â””â”€â”€> rotating collector.log
 ```
 
 This separation keeps data acquisition independent from the presentation
@@ -137,3 +137,4 @@ automatic daily reporting.
 ------------------------------------------------------------------------
 
 For operating instructions, see [USER_MANUAL.md](USER_MANUAL.md).
+

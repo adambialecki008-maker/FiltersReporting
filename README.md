@@ -1,4 +1,4 @@
-# FiltersReporting
+﻿# FiltersReporting
 
 **Industrial OPC UA monitoring and reporting for independent machines.**
 
@@ -12,7 +12,7 @@ from multiple independent OPC UA machines.
 > **License:** proprietary --- source available for portfolio/review
 > purposes only
 
-![FiltersReporting Dashboard](docs/screenshots/Dashboard.png)
+![FiltersReporting Dashboard](docs/screenshots/dashboard.png)
 
 ## What it does
 
@@ -55,14 +55,14 @@ A communication failure on one machine does not stop data acquisition
 from the others.
 
 ``` text
- OPC UA Machine #1 ─┐
- OPC UA Machine #2 ─┼──> async collector ──> SQLite
- OPC UA Machine #N ─┘                         │
-                                              ├──> monitoring
-                                              ├──> Excel / TXT reports
-                                              └──> SMTP
-                                                       │
-                                                       ▼
+ OPC UA Machine #1 â”€â”
+ OPC UA Machine #2 â”€â”Ľâ”€â”€> async collector â”€â”€> SQLite
+ OPC UA Machine #N â”€â”                         â”‚
+                                              â”śâ”€â”€> monitoring
+                                              â”śâ”€â”€> Excel / TXT reports
+                                              â””â”€â”€> SMTP
+                                                       â”‚
+                                                       â–Ľ
                                                    PySide6 GUI
 ```
 
@@ -73,22 +73,22 @@ from the others.
 The dashboard shows collector state, database status, connected OPC UA
 machines, filters requiring attention, recent events and quick actions.
 
-![Dashboard](docs/screenshots/Dashboard.png)
+![Dashboard](docs/screenshots/dashboard.png)
 
 ### Filter configuration
 
 Each filter has its own endpoint and signal NodeIds (`DeltaP`, `Status`,
 `AlarmActive`).
 
-![Filters](docs/screenshots/Filtry.png)
+![Filters](docs/screenshots/filter-configuration.png)
 
 ### Daily reports
 
 Daily reports aggregate collected samples and expose sample count,
-minimum/average/maximum Δp, configured threshold, alarm percentage and
+minimum/average/maximum Î”p, configured threshold, alarm percentage and
 operating percentage.
 
-![Reports](docs/screenshots/Raporty.png)
+![Reports](docs/screenshots/daily-reports.png)
 
 ### OPC UA security
 
@@ -184,3 +184,4 @@ See [LICENSE](LICENSE).
 ------------------------------------------------------------------------
 
 **FiltersReporting v1.0.0**
+
