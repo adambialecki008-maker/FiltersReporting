@@ -1,159 +1,186 @@
 # FiltersReporting
 
-Industrial OPC UA monitoring and reporting application written in Python.
+**Industrial OPC UA monitoring and reporting for independent machines.**
 
-FiltersReporting is a Windows desktop application for collecting, storing, monitoring and reporting filtration-system data from multiple independent OPC UA machines.
+FiltersReporting is a Windows desktop application written in Python for
+collecting, storing, monitoring and reporting filtration-system data
+from multiple independent OPC UA machines.
 
-## Status
+> **Release:** v1.0.0\
+> **Automated tests:** 359 passed\
+> **Installed-build smoke test:** passed\
+> **License:** proprietary --- source available for portfolio/review
+> purposes only
 
-**v1.0 release candidate**
+![FiltersReporting Dashboard](docs/screenshots/Dashboard.png)
 
-Automated test baseline:
+## What it does
 
-```text
-359 passed
+FiltersReporting treats every configured filter as an independent OPC UA
+machine. Each machine can use its own endpoint, NodeIds, security
+policy, security mode, certificates and authentication settings.
+
+The application provides:
+
+-   asynchronous OPC UA data acquisition from multiple machines
+-   per-machine connection and security configuration
+-   X.509 client certificate support
+-   Username/Password or Anonymous client authentication
+-   Windows DPAPI protection for stored credentials
+-   SQLite persistence
+-   live monitoring and attention-state evaluation
+-   daily Excel and TXT reports
+-   manual and automatic SMTP report delivery
+-   automatic daily reporting
+-   OPC UA namespace browsing
+-   optional local read-only OPC UA server
+-   separate GUI and collector processes
+-   rotating collector logs
+-   single-instance protection
+-   Windows packaging with PyInstaller and Inno Setup
+
+## Why the architecture is per-machine
+
+Industrial installations are rarely uniform. Different machines can
+expose different endpoints, certificates, credentials, NodeIds and
+security requirements.
+
+FiltersReporting therefore uses the model:
+
+``` text
+one filter = one independent OPC UA machine
 ```
 
-The v1.0 feature set is frozen. Remaining release work is final installed-build smoke testing, screenshots, anonymised sample reports and repository cleanup.
+A communication failure on one machine does not stop data acquisition
+from the others.
 
-## Main features
+``` text
+ OPC UA Machine #1 ─┐
+ OPC UA Machine #2 ─┼──> async collector ──> SQLite
+ OPC UA Machine #N ─┘                         │
+                                              ├──> monitoring
+                                              ├──> Excel / TXT reports
+                                              └──> SMTP
+                                                       │
+                                                       ▼
+                                                   PySide6 GUI
+```
 
-- multiple independent OPC UA machines
-- one filter = one independent OPC UA endpoint
-- per-machine Security Policy / Security Mode
-- X.509 client certificates
-- per-machine Username/Password authentication
-- Windows DPAPI credential protection
-- asynchronous data collection
-- SQLite persistence
-- filter-state monitoring
-- Excel and TXT daily reports
-- SMTP report delivery
-- automatic daily reporting
-- PySide6 desktop GUI
-- Dashboard recent-events section
-- OPC UA namespace browser
-- optional local OPC UA Server
-- GUI and collector single-instance protection
-- dedicated frozen collector executable
-- rotating collector log
-- PyInstaller + Inno Setup packaging
+## Application views
+
+### Monitoring dashboard
+
+The dashboard shows collector state, database status, connected OPC UA
+machines, filters requiring attention, recent events and quick actions.
+
+![Dashboard](docs/screenshots/Dashboard.png)
+
+### Filter configuration
+
+Each filter has its own endpoint and signal NodeIds (`DeltaP`, `Status`,
+`AlarmActive`).
+
+![Filters](docs/screenshots/Filtry.png)
+
+### Daily reports
+
+Daily reports aggregate collected samples and expose sample count,
+minimum/average/maximum Δp, configured threshold, alarm percentage and
+operating percentage.
+
+![Reports](docs/screenshots/Raporty.png)
+
+### OPC UA security
+
+Client configuration is independent for every machine and supports
+security policy/mode selection, client certificates, server-certificate
+trust and per-machine credentials.
+
+See the visual walkthrough in [SHOWCASE.md](docs/SHOWCASE.md).
 
 ## Collector runtime
 
+The collector is a separate process from the GUI.
+
 Development:
 
-```text
+``` powershell
 python -m filters_reporting.collection.data_collector
 ```
 
 Installed build:
 
-```text
+``` text
 FiltersReportingCollector.exe
 ```
 
-The GUI and frozen collector explicitly share the same log-file path.
-
-## OPC UA model
-
-In v1.0:
-
-> one configured filter = one independent machine / OPC UA server
-
-Each machine can have its own:
-
-- endpoint
-- Security Policy
-- Security Mode
-- Application URI
-- client certificate
-- private key
-- trusted certificate directory
-- server certificate
-- certificate validation setting
-- authentication method
-- username/password
-- timeouts
-- reconnect delay
-- DeltaP NodeId
-- Status NodeId
-- AlarmActive NodeId
-
-A communication problem with one machine does not stop acquisition from the others.
+The installed GUI launches the dedicated collector executable and
+explicitly hands off the resolved collector log path so both processes
+refer to the same physical log file.
 
 ## Reports
 
-Daily reports are generated as:
+A daily report is generated in two formats:
 
-```text
+``` text
 .xlsx
 .txt
 ```
 
-They include statistics such as:
-
-- sample count
-- minimum Δp
-- average Δp
-- maximum Δp
-- threshold
-- alarm percentage
-- operating percentage
-- attention state
+The Excel workbook contains summary statistics and raw samples. Reports
+can be generated manually, generated and sent by e-mail, or scheduled
+automatically for the previous day.
 
 ## Technology stack
 
-- Python
-- PySide6
-- asyncua / OPC UA
-- asyncio
-- SQLite
-- openpyxl
-- Windows DPAPI
-- pytest
-- PyInstaller
-- Inno Setup
+  Area                       Technology
+  -------------------------- ------------------
+  Language                   Python
+  Desktop GUI                PySide6
+  Industrial communication   OPC UA / asyncua
+  Concurrency                asyncio
+  Persistence                SQLite
+  Excel reporting            openpyxl
+  Credential protection      Windows DPAPI
+  Tests                      pytest
+  Packaging                  PyInstaller
+  Installer                  Inno Setup
 
-## Screenshots
+## Validation
 
-Add:
+The frozen v1.0.0 build was validated after installation.
 
-```text
-docs/screenshots/dashboard.png
-docs/screenshots/filters.png
-docs/screenshots/reports.png
-docs/screenshots/opc-ua-client.png
-docs/screenshots/opc-ua-server.png
-```
+-   **359 automated tests passed**
+-   GUI startup passed
+-   collector start / stop / restart passed
+-   5/5 simulated OPC UA machines connected
+-   sustained collection passed
+-   collector logging passed
+-   settings persistence passed
+-   Excel report generation passed
+-   TXT report generation passed
+-   SMTP delivery passed
+-   automatic daily report passed
 
-## Sample reports
-
-Add anonymised examples:
-
-```text
-samples/sample_daily_report.xlsx
-samples/sample_daily_report.txt
-```
-
-## Testing
-
-Run:
-
-```powershell
-python -m pytest
-```
-
-Current baseline:
-
-```text
-359 passed
-```
+See [TESTING.md](docs/TESTING.md) for the automated test scope.
 
 ## Documentation
 
-- `docs/ARCHITECTURE.md`
-- `docs/OPC_UA_SECURITY.md`
-- `docs/TESTING.md`
-- `docs/USER_MANUAL.md`
-- `docs/RELEASE_CHECKLIST.md`
+-   [Showcase](docs/SHOWCASE.md)
+-   [User manual](docs/USER_MANUAL.md)
+-   [Architecture](docs/ARCHITECTURE.md)
+-   [OPC UA security](docs/OPC_UA_SECURITY.md)
+-   [Testing](docs/TESTING.md)
+-   [Changelog](CHANGELOG.md)
+
+## Repository note
+
+This repository is published as a **portfolio/source-review project**.
+Publication of the source code does not grant permission to use, copy,
+modify, distribute, sublicense or commercialize it.
+
+See [LICENSE](LICENSE).
+
+------------------------------------------------------------------------
+
+**FiltersReporting v1.0.0**

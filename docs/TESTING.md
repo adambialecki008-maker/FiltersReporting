@@ -1,49 +1,44 @@
 # Testing
 
-## Current baseline
+## v1.0.0 status
 
-```text
+``` text
 359 passed
 ```
 
 Run:
 
-```powershell
+``` powershell
 python -m pytest
 ```
 
 ## Covered areas
 
-The suite covers, among other areas:
+The suite covers collector behaviour, single-instance protection,
+collector launching and logging, frozen GUI → collector log-path
+handoff, runtime paths, database location, per-machine OPC UA
+configuration, OPC UA security/authentication, namespace browsing, local
+OPC UA Server, reports, SMTP, Windows DPAPI credential persistence, GUI
+protection, repository error paths and packaging-related behaviour.
 
-- collector behaviour
-- collector single-instance protection
-- collector launcher
-- collector file logging
-- frozen GUI → collector log-path handoff
-- no development env leakage
-- runtime paths
-- database location
-- per-machine OPC UA configuration
-- OPC UA security/authentication
-- namespace browsing
-- OPC UA Server
-- reports
-- SMTP
-- DPAPI credential persistence
-- GUI single-instance protection
-- repository error paths
-- packaging-related behaviour
+## Installed-build smoke test
 
-## Latest regression coverage
+The final installed v1.0.0 build was also validated manually.
 
-The current v1.0 candidate verifies that the collector:
+Passed:
 
-- creates its configured log file
-- writes INFO records
-- does not duplicate its owned file handler
-- preserves exception propagation from `main()`
-- uses normal `LOG_FILE` in development
-- uses the GUI-provided log path in frozen builds
+-   GUI startup
+-   Dashboard recent-events section
+-   collector start / clean stop / restart
+-   5/5 simulated OPC UA machines connected
+-   5/5 sample collection with `OPC_OK`
+-   sustained collection over multiple cycles
+-   collector log creation and updates
+-   settings persistence after restart
+-   manual Excel report generation
+-   manual TXT report generation
+-   manual SMTP report delivery
+-   automatic daily report
 
-Installed-build smoke testing is still required in addition to pytest.
+Automated tests and installed-build smoke testing cover different
+failure modes; both were completed before the v1.0.0 release was frozen.

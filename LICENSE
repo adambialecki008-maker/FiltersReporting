@@ -1,0 +1,38 @@
+FiltersReporting Proprietary License
+
+Copyright (c) 2026 Adam Bialecki
+All rights reserved.
+
+The source code, binaries, documentation, images, and other materials in this
+repository (collectively, the "Software") are made publicly visible solely for
+portfolio, evaluation, and source-review purposes.
+
+No license or permission is granted to use the Software.
+
+Without the copyright holder's prior written permission, you may not:
+
+1. use or execute the Software for personal, educational, research, internal,
+   commercial, production, or other purposes;
+2. copy, reproduce, modify, adapt, translate, or create derivative works from
+   the Software;
+3. distribute, publish, sublicense, sell, rent, lease, host, deploy, or otherwise
+   make the Software or derivative works available to any third party;
+4. incorporate any part of the Software into another product, service, project,
+   dataset, training corpus, or codebase;
+5. remove or alter copyright, authorship, license, or proprietary notices.
+
+Permission for any use must be obtained in writing from the copyright holder.
+
+Public availability of this repository does not make the Software open source
+and does not waive any copyright or other intellectual-property rights.
+
+To the extent that the hosting platform's terms of service require limited
+rights for hosting, displaying, or platform-native repository functionality,
+those rights are granted only to the extent required by those terms and do not
+constitute a general license to the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF,
+OR IN CONNECTION WITH THE SOFTWARE OR THE USE OF THE SOFTWARE.
