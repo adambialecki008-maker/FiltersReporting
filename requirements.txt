@@ -1,0 +1,8 @@
+PySide6
+asyncua
+openpyxl
+python-dotenv
+
+pytest
+pytest-asyncio
+pytest-cov
