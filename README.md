@@ -1,4 +1,4 @@
-﻿# FiltersReporting
+# FiltersReporting
 
 **Industrial OPC UA monitoring and reporting for independent machines.**
 
@@ -55,14 +55,14 @@ A communication failure on one machine does not stop data acquisition
 from the others.
 
 ``` text
- OPC UA Machine #1 â”€â”
- OPC UA Machine #2 â”€â”Ľâ”€â”€> async collector â”€â”€> SQLite
- OPC UA Machine #N â”€â”                         â”‚
-                                              â”śâ”€â”€> monitoring
-                                              â”śâ”€â”€> Excel / TXT reports
-                                              â””â”€â”€> SMTP
-                                                       â”‚
-                                                       â–Ľ
+ OPC UA Machine #1 ─┐
+ OPC UA Machine #2 ─┼──> async collector ──> SQLite
+ OPC UA Machine #N ─┘                         │
+                                              ├──> monitoring
+                                              ├──> Excel / TXT reports
+                                              └──> SMTP
+                                                       │
+                                                       ▼
                                                    PySide6 GUI
 ```
 
@@ -85,7 +85,7 @@ Each filter has its own endpoint and signal NodeIds (`DeltaP`, `Status`,
 ### Daily reports
 
 Daily reports aggregate collected samples and expose sample count,
-minimum/average/maximum Î”p, configured threshold, alarm percentage and
+minimum/average/maximum Δp, configured threshold, alarm percentage and
 operating percentage.
 
 ![Reports](docs/screenshots/daily-reports.png)
@@ -184,4 +184,3 @@ See [LICENSE](LICENSE).
 ------------------------------------------------------------------------
 
 **FiltersReporting v1.0.0**
-

@@ -1,4 +1,4 @@
-﻿# FiltersReporting v1.0.0 --- Showcase
+# FiltersReporting v1.0.0 --- Showcase
 
 This document presents the main user-facing and technical areas of
 FiltersReporting. The screenshots use simulated OPC UA machines and
@@ -27,7 +27,7 @@ one filter = one independent OPC UA endpoint
 ```
 
 For every filter the user can configure the filter name and active
-state, Î”p threshold, OPC UA endpoint and the `DeltaP`, `Status` and
+state, Δp threshold, OPC UA endpoint and the `DeltaP`, `Status` and
 `AlarmActive` NodeIds. NodeIds can be entered manually or selected
 through the OPC UA namespace browser.
 
@@ -37,7 +37,7 @@ through the OPC UA namespace browser.
 
 The Reports view previews data for the selected day before report
 generation. The summary includes sample count, minimum/average/maximum
-Î”p, configured threshold, alarm percentage and operating percentage.
+Δp, configured threshold, alarm percentage and operating percentage.
 
 FiltersReporting generates both Excel and TXT output and can send the
 report through configured SMTP delivery.
@@ -105,12 +105,12 @@ The GUI and collector are separate processes.
 
 ``` text
 FiltersReporting.exe
-        â”‚
-        â””â”€â”€> FiltersReportingCollector.exe
-                     â”‚
-                     â”śâ”€â”€> independent OPC UA clients
-                     â”śâ”€â”€> SQLite
-                     â””â”€â”€> rotating collector.log
+        │
+        └──> FiltersReportingCollector.exe
+                     │
+                     ├──> independent OPC UA clients
+                     ├──> SQLite
+                     └──> rotating collector.log
 ```
 
 This separation keeps data acquisition independent from the presentation
@@ -137,4 +137,3 @@ automatic daily reporting.
 ------------------------------------------------------------------------
 
 For operating instructions, see [USER_MANUAL.md](USER_MANUAL.md).
-
